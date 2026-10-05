@@ -13,15 +13,15 @@ export default function About() {
 
       <div className="about-layout">
         <div className="about-copy">
-          <p className="about-lede">I am an Electronics &amp; Computer Engineering student at MBM University, Jodhpur, interested in building systems that connect software with the physical world.</p>
-          <p>My projects have taken me from physical robotics and embedded controllers to ROS2-based robots, computer vision, sensor systems and simulation-driven embedded systems.</p>
-          <p>I have worked with robotic arms, combat robots, ESP32 systems, ROS2 and holonomic robots, and I am currently exploring deeper embedded-system design through an STM32-based battery-management simulation.</p>
-          <p>I am particularly interested in understanding how sensors, firmware, communication, control algorithms and physical systems interact — rather than treating each technology as an isolated tool.</p>
+          <p className="about-lede">Electronics &amp; Computer Engineering student at MBM University, Jodhpur. I build things with microcontrollers, sensors and robots.</p>
+          <p>Main areas: embedded firmware (STM32, ESP32), ROS2 robotics, motor control, computer vision and hardware-software integration. Currently working on a simulation-based BMS and a low-cost mapping robot.</p>
+          <p>I have built a 4-DOF robotic arm, a 15 kg battlebot, a holonomic ROS2 robot for e-Yantra and spent time understanding ESP32 and ESP-IDF from scratch. I also had a Railway S&amp;T internship covering signalling and telecoms.</p>
+          <p>I care about understanding how systems actually work — from the signal and register level up — not just getting code to run.</p>
         </div>
 
         <div className="about-quote">
           <span className="quote-mark">"</span>
-          <p>I like understanding machines from the signal level up — from microcontroller firmware and sensors to robot motion, perception and system-level behaviour.</p>
+          <p>From the register level up.</p>
           <div className="quote-line" />
           <span>WORKING PRINCIPLE / ANSHU</span>
         </div>
@@ -41,7 +41,7 @@ export default function About() {
         <div className="info-card">
           <span className="info-label">INDUSTRY EXPOSURE</span>
           <strong>Railway S&amp;T Internship</strong>
-          <p>Railway Signalling &amp; Telecommunications exposure. [ADD INTERNSHIP DETAILS]</p>
+          <p>Railway Signalling &amp; Telecommunications exposure.</p>
         </div>
       </div>
     </section>

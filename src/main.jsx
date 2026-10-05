@@ -8,11 +8,15 @@ import ProjectDetail from './components/ProjectDetail';
 import SkillInventory from './components/SkillInventory';
 import About from './components/About';
 import Contact from './components/Contact';
+import ContactModal from './components/ContactModal';
+import EasterEgg from './components/EasterEgg';
 import PixelDecorations from './components/PixelDecorations';
 import './styles.css';
 
 function App() {
   const [activeProjectId, setActiveProjectId] = useState(null);
+  const [contactOpen, setContactOpen] = useState(false);
+  const [easterEggOpen, setEasterEggOpen] = useState(false);
 
   const activeProject = useMemo(
     () => projects.find((project) => project.id === activeProjectId) ?? null,
@@ -30,6 +34,19 @@ function App() {
     return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
 
+  // Escape key closes contact modal
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') setContactOpen(false); };
+    if (contactOpen) window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [contactOpen]);
+
+  // Prevent body scroll when modal open
+  useEffect(() => {
+    document.body.style.overflow = contactOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [contactOpen]);
+
   const openProject = (id) => {
     window.location.hash = `project/${id}`;
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -41,7 +58,7 @@ function App() {
   };
 
   return (
-    <div className="site-shell">
+    <div className={`site-shell${contactOpen ? ' contact-blur' : ''}`}>
       <PixelDecorations />
       <Navbar />
 
@@ -51,11 +68,11 @@ function App() {
         </main>
       ) : (
         <main>
-          <Hero />
+          <Hero onRobotClick={() => setEasterEggOpen(true)} />
           <ProjectGrid projects={projects} onOpen={openProject} />
           <SkillInventory />
           <About />
-          <Contact />
+          <Contact onOpenContact={() => setContactOpen(true)} />
         </main>
       )}
 
@@ -63,6 +80,9 @@ function App() {
         <span>ANSHU / ENGINEERING WORLD</span>
         <span className="footer-status"><i /> portfolio build</span>
       </footer>
+
+      {contactOpen && <ContactModal onClose={() => setContactOpen(false)} />}
+      {easterEggOpen && <EasterEgg onClose={() => setEasterEggOpen(false)} />}
     </div>
   );
 }

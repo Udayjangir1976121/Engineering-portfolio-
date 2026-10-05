@@ -1,6 +1,6 @@
 import React from 'react';
 
-function HeroScene() {
+function HeroScene({ onRobotClick }) {
   return (
     <div className="hero-scene" aria-label="Decorative pixel engineering scene">
       <div className="scene-sky">
@@ -30,7 +30,7 @@ function HeroScene() {
       <span className="pixel-flower flower-a" />
       <span className="pixel-flower flower-b" />
 
-      <div className="pixel-bot">
+      <div className="pixel-bot" onClick={onRobotClick} style={{ cursor: 'pointer', zIndex: 10 }} title="?">
         <div className="bot-antenna" />
         <div className="bot-head"><span /><span /><div className="bot-mouth" /></div>
         <div className="bot-arm arm-a" />
@@ -43,7 +43,7 @@ function HeroScene() {
   );
 }
 
-export default function Hero() {
+export default function Hero({ onRobotClick }) {
   return (
     <section className="hero container" id="top">
       <div className="hero-copy">
@@ -60,7 +60,7 @@ export default function Hero() {
           <span><b>∞</b> experiments</span>
         </div>
       </div>
-      <HeroScene />
+      <HeroScene onRobotClick={onRobotClick} />
     </section>
   );
 }

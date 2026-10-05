@@ -1,18 +1,18 @@
 import React from 'react';
 
-export default function Contact() {
+export default function Contact({ onOpenContact }) {
   return (
     <section className="contact-section" id="contact">
       <div className="container contact-inner">
         <div>
           <div className="section-code">05 / SIGNAL</div>
           <h2>LET'S BUILD SOMETHING</h2>
-          <p>Interested in embedded systems, robotics or engineering projects? Reach out through any of the links below.</p>
+          <p>Interested in embedded systems, robotics or engineering projects? Get in touch.</p>
         </div>
         <div className="contact-links">
-          <a href="[ADD GITHUB URL]">GitHub <span>↗</span></a>
-          <a href="[ADD LINKEDIN URL]">LinkedIn <span>↗</span></a>
-          <a href="mailto:[ADD EMAIL]">Email <span>↗</span></a>
+          <button className="pixel-button" onClick={onOpenContact}>
+            OPEN CONTACTS <span>→</span>
+          </button>
         </div>
       </div>
       <div className="contact-scene" aria-hidden="true">

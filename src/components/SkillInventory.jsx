@@ -6,7 +6,7 @@ const skillCategories = [
     skills: [
       ['C', 'systems language'], ['STM32', 'microcontrollers'], ['ESP32', 'wireless MCU'],
       ['ESP-IDF', 'ESP32 SDK'], ['STM32CUBE', 'STM32 tools'], ['GPIO', 'digital I/O'],
-      ['ADC', 'analog input'], ['PWM', 'pulse-width mod'],
+      ['ADC', 'analog input'], ['PWM', 'pulse-width mod'], ['RASPBERRY PI', 'linux sbc'],
     ],
   },
   {
@@ -37,7 +37,7 @@ const skillCategories = [
   {
     name: 'PROGRAMMING',
     skills: [
-      ['C', 'systems language'], ['C++', 'robotics + control'], ['PYTHON', 'automation + vision'], ['GIT', 'version control'],
+      ['C', 'systems language'], ['PYTHON', 'automation + vision'], ['GIT', 'version control'],
     ],
   },
 ];

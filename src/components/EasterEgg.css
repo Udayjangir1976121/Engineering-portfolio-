@@ -1,0 +1,525 @@
+.ee-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999999;
+    background: #090a09;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+    color: #cdd5c9;
+    overflow: hidden auto;
+}
+
+.ee-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 100;
+    min-height: 40px;
+}
+
+.ee-game-area {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    cursor: pointer;
+    background: radial-gradient(circle at center, #111713 0%, #060806 100%);
+}
+
+.ee-floor {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 25%;
+    background: #0d120f;
+    border-top: 2px solid #202b22;
+    box-shadow: inset 0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+.ee-scenery {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.ee-scenery.paused * {
+    animation-play-state: paused !important;
+}
+
+.ee-trace {
+    position: absolute;
+    bottom: 40%;
+    height: 2px;
+    background: #172418;
+    width: 200px;
+    animation: eeScroll 1.2s linear infinite;
+}
+
+.ee-trace::before,
+.ee-trace::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #172418;
+    top: -2px;
+}
+
+.ee-trace::before {
+    left: 0;
+}
+
+.ee-trace::after {
+    right: 0;
+}
+
+.ee-t1 {
+    bottom: 42%;
+    width: 120px;
+    animation-duration: .8s;
+}
+
+.ee-t2 {
+    bottom: 50%;
+    width: 300px;
+    animation-duration: 2s;
+    animation-delay: .5s;
+}
+
+.ee-t3 {
+    bottom: 35%;
+    width: 80px;
+    animation-duration: .6s;
+    animation-delay: .2s;
+}
+
+.ee-label {
+    position: absolute;
+    bottom: 45%;
+    font: 700 14px 'Courier New', monospace;
+    color: #1b261b;
+    animation: eeScroll 3s linear infinite;
+}
+
+.ee-l1 {
+    bottom: 60%;
+    animation-duration: 2.5s;
+}
+
+.ee-l2 {
+    bottom: 70%;
+    animation-duration: 4s;
+    animation-delay: 1s;
+}
+
+.ee-l3 {
+    bottom: 55%;
+    animation-duration: 3s;
+    animation-delay: 2s;
+}
+
+.ee-l4 {
+    bottom: 80%;
+    animation-duration: 5s;
+    animation-delay: .5s;
+}
+
+.ee-l5 {
+    bottom: 65%;
+    animation-duration: 3.5s;
+    animation-delay: 1.5s;
+}
+
+@keyframes eeScroll {
+    from {
+        transform: translateX(110vw);
+    }
+
+    to {
+        transform: translateX(-50vw);
+    }
+}
+
+.ee-bot {
+    position: absolute !important;
+    left: 15% !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: 25% !important;
+    margin: 0 !important;
+    animation: none !important;
+    /* kill Hero bob animation */
+    transform: scale(1.5);
+    transform-origin: bottom center !important;
+    transition: transform 0.1s;
+}
+
+.ee-run .bot-foot.foot-a {
+    animation: eeRun .25s infinite alternate;
+}
+
+.ee-run .bot-foot.foot-b {
+    animation: eeRun .25s infinite alternate-reverse;
+}
+
+.ee-run .bot-body {
+    animation: eeRunBody .25s infinite alternate;
+}
+
+.ee-run .bot-head {
+    animation: eeRunHead .25s infinite alternate;
+}
+
+@keyframes eeRun {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-4px);
+    }
+}
+
+@keyframes eeRunBody {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(2px);
+    }
+}
+
+@keyframes eeRunHead {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(1px) translateX(1px);
+    }
+}
+
+.ee-jump {
+    transform: scale(1.5) translateY(-70px) rotate(5deg) !important;
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.ee-gift-chest {
+    position: absolute;
+    right: 15%;
+    bottom: 40%;
+    text-align: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    animation: eeHover 2s infinite ease-in-out;
+    color: var(--yellow);
+    z-index: 10;
+}
+
+@keyframes eeHover {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+.ee-gift-icon {
+    font-size: 80px;
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+    animation: pulse 1s infinite alternate;
+}
+
+.ee-gift-text {
+    font: 700 12px 'Courier New', monospace;
+    margin-top: 20px;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 1);
+    letter-spacing: .1em;
+}
+
+.ee-mobile-jump {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #4a5d4d;
+    font: 700 12px 'Courier New', monospace;
+    letter-spacing: .2em;
+    pointer-events: none;
+}
+
+.ee-opening-anim {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, #2e2a10 0%, #060806 100%);
+    animation: eeFlash 2.5s ease-out;
+}
+
+@keyframes eeFlash {
+    0% {
+        filter: brightness(1);
+    }
+
+    30% {
+        filter: brightness(3) sepia(1);
+    }
+
+    100% {
+        filter: brightness(1);
+    }
+}
+
+.ee-gift-big {
+    font-size: 150px;
+    animation: eeShake .5s infinite, eeGrow 2s ease-in forwards;
+}
+
+@keyframes eeShake {
+
+    0%,
+    100% {
+        transform: rotate(-5deg);
+    }
+
+    50% {
+        transform: rotate(5deg);
+    }
+}
+
+@keyframes eeGrow {
+    to {
+        transform: scale(3) translateY(-50px);
+        opacity: 0;
+        filter: blur(10px);
+    }
+}
+
+.ee-card-container {
+    padding: 40px 20px;
+    max-width: 900px;
+    width: 100%;
+    margin: auto;
+    animation: eeFadeUp .6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes eeFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ee-win-title {
+    text-align: center;
+    color: var(--yellow);
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: .15em;
+    margin-bottom: 40px;
+    text-shadow: 0 0 20px rgba(230, 200, 50, 0.3);
+}
+
+.ee-win-title span {
+    display: block;
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 10px;
+    letter-spacing: .08em;
+}
+
+.ee-card {
+    background: #111512;
+    border: 1px solid #303b32;
+    box-shadow: 12px 12px 0 #070907, inset 0 0 100px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.ee-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(20, 28, 22, 0.6) 10px, rgba(20, 28, 22, 0.6) 20px);
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.ee-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-top: 3px solid var(--yellow);
+}
+
+.ee-card-header {
+    padding: 35px 40px;
+    background: rgba(10, 14, 11, 0.8);
+    border-bottom: 1px solid #1e261f;
+    position: relative;
+    z-index: 2;
+}
+
+.ee-card-header h1 {
+    font-size: 42px;
+    margin: 0 0 10px;
+    color: #fff;
+}
+
+.ee-card-position {
+    font: 700 13px 'Courier New', monospace;
+    letter-spacing: .15em;
+    color: var(--yellow);
+    margin-bottom: 20px;
+}
+
+.ee-card-profile {
+    font-size: 15px;
+    color: #9bb2a0;
+    max-width: 600px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.ee-card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+@media (max-width: 800px) {
+    .ee-card-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 30px 20px;
+    }
+
+    .ee-card-header {
+        padding: 25px 20px;
+    }
+
+    .ee-card-header h1 {
+        font-size: 32px;
+    }
+}
+
+.ee-card section {
+    margin-bottom: 35px;
+}
+
+.ee-card section:last-child {
+    margin-bottom: 0;
+}
+
+.ee-card h3 {
+    font: 700 11px 'Courier New', monospace;
+    letter-spacing: .2em;
+    color: var(--green);
+    border-bottom: 1px solid #1e261f;
+    padding-bottom: 8px;
+    margin: 0 0 15px;
+}
+
+.ee-card strong {
+    color: #d0e0d3;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.ee-card div,
+.ee-card li {
+    color: #8a9c8f;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.ee-exp-item {
+    margin-bottom: 15px;
+}
+
+.ee-skills-list,
+.ee-projects-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ee-skills-list li {
+    margin-bottom: 12px;
+}
+
+.ee-skills-list strong {
+    display: inline;
+    color: #cdd5c9;
+}
+
+.ee-projects-list li {
+    margin-bottom: 16px;
+    padding-left: 12px;
+    border-left: 2px solid #202b22;
+}
+
+.ee-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.ee-links a {
+    color: var(--yellow);
+    text-decoration: none;
+    font: 700 12px 'Courier New', monospace;
+    padding: 6px 10px;
+    background: rgba(255, 200, 0, 0.05);
+    border: 1px solid rgba(255, 200, 0, 0.2);
+    transition: all .2s;
+}
+
+.ee-links a:hover {
+    background: var(--yellow);
+    color: #000;
+}
+
+.ee-card-footer {
+    padding: 15px 40px;
+    background: rgba(5, 7, 6, 0.9);
+    border-top: 1px solid #1e261f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    font: 700 10px 'Courier New', monospace;
+    color: var(--muted);
+    letter-spacing: .15em;
+}
+
+.ee-bar-code {
+    font-size: 14px;
+    letter-spacing: 2px;
+    opacity: .5;
+}

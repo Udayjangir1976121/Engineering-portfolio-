@@ -10,7 +10,6 @@ function DetailScene({ accent }) {
         <div className="led led-1" /><div className="led led-2" /><div className="led led-3" />
       </div>
       <div className="detail-cable cable-1" /><div className="detail-cable cable-2" />
-      <span className="media-label">ADD PROJECT MEDIA</span>
     </div>
   );
 }
@@ -31,13 +30,7 @@ function Architecture({ items }) {
 function MediaGrid({ project }) {
   const mediaItems = project.media;
   if (!mediaItems || mediaItems.length === 0) {
-    return (
-      <div className="media-grid">
-        <div className="media-card"><DetailScene accent={project.accent} /><span>ADD IMAGE 01</span></div>
-        <div className="media-card media-placeholder"><div className="play-cube">▶</div><span>ADD VIDEO</span></div>
-        <div className="media-card schematic"><div className="schematic-lines" /><span>ADD SCHEMATIC</span></div>
-      </div>
-    );
+    return null;
   }
 
   return (
@@ -46,19 +39,15 @@ function MediaGrid({ project }) {
         if (item.type === 'video') {
           if (item.url) {
             return (
-              <div className="media-card" key={idx}>
-                <video src={item.url} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <div className="media-card media-video-card" key={idx}>
+                <video src={item.url} controls muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 <span>{item.label}</span>
               </div>
             );
           }
-          return (
-            <div className="media-card media-placeholder" key={idx}>
-              <div className="play-cube">▶</div>
-              <span>{item.label}</span>
-            </div>
-          );
+          return null;
         }
+
 
         if (item.url) {
           return (
@@ -69,20 +58,7 @@ function MediaGrid({ project }) {
           );
         }
 
-        if (idx === 0) {
-          return (
-            <div className="media-card" key={idx}>
-              <DetailScene accent={project.accent} />
-              <span>{item.label}</span>
-            </div>
-          );
-        }
-        return (
-          <div className="media-card schematic" key={idx}>
-            <div className="schematic-lines" />
-            <span>{item.label}</span>
-          </div>
-        );
+        return null;
       })}
     </div>
   );
@@ -91,17 +67,19 @@ function MediaGrid({ project }) {
 function ProjectLinks({ links }) {
   if (!links || links.length === 0) return null;
 
+  const validLinks = links.filter((link) => link.url && !link.url.startsWith('[') && link.url !== '#');
+  if (validLinks.length === 0) return null;
+
   return (
     <div className="detail-cta-row">
-      {links.map((link) => {
-        const isPlaceholder = link.url.startsWith('[');
+      {validLinks.map((link) => {
         return (
           <a
             key={link.label}
-            href={isPlaceholder ? '#' : link.url}
+            href={link.url}
             className="pixel-button small"
-            target={isPlaceholder ? undefined : '_blank'}
-            rel={isPlaceholder ? undefined : 'noopener noreferrer'}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {link.label} <span>↗</span>
           </a>
@@ -161,10 +139,12 @@ export default function ProjectDetail({ project, onClose }) {
           <ul className="detail-list">{project.challenges.map((item) => <li key={item}>{item}</li>)}</ul>
         </section>
 
-        <section className="detail-block full-width">
-          <div className="detail-block-title"><span>05</span><h2>MEDIA</h2></div>
-          <MediaGrid project={project} />
-        </section>
+        {project.media && project.media.length > 0 && (
+          <section className="detail-block full-width">
+            <div className="detail-block-title"><span>05</span><h2>MEDIA</h2></div>
+            <MediaGrid project={project} />
+          </section>
+        )}
 
         <section className="detail-block">
           <div className="detail-block-title"><span>06</span><h2>WHAT I LEARNED</h2></div>
